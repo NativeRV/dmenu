@@ -24,6 +24,9 @@ static unsigned int lines          = 0;
 static unsigned int lineheight     = 0;
 static unsigned int min_lineheight = 8;
 
+/* -P option; sets the bullet character */
+static char *censorchar            = '.';
+
 static char normfgcolor[] = "#bbbbbb";
 static char normbgcolor[] = "#222222";
 static char selfgcolor[]  = "#eeeeee";
@@ -55,6 +58,7 @@ ResourcePref resources[] = {
   { "lineheight",      INTEGER,    &lineheight }, 
   { "min_lineheight",  INTEGER,    &lineheight }, 
   { "lines",           INTEGER,    &lines }, 
+  { "censorchar",      STRING,     &censorchar },
 };
 
 /* Size of the window border */
