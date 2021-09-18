@@ -435,21 +435,22 @@ keypress(XKeyEvent *ev)
 	if (ev->state & ControlMask) {
 		switch(ksym) {
 		case XK_a: ksym = XK_Home;      break;
+    case XK_h:                      /* fallthrough */
 		case XK_b: ksym = XK_Left;      break;
 		case XK_c: ksym = XK_Escape;    break;
 		case XK_d: ksym = XK_Delete;    break;
 		case XK_e: ksym = XK_End;       break;
+    case XK_l:                      /* fallthrough */
 		case XK_f: ksym = XK_Right;     break;
 		case XK_g: ksym = XK_Escape;    break;
 		case XK_i: ksym = XK_Tab;       break;
-		case XK_j: /* fallthrough */
-		case XK_J: /* fallthrough */
+		case XK_j:                      /* fallthrough */
+		case XK_J:                      /* fallthrough */
     case XK_n: ksym = XK_Down;      break;
-    case XK_k: /* fallthrough */
-    case XK_K: /* fallthrough */
-		case XK_m: /* fallthrough */
+    case XK_k:                      /* fallthrough */
+    case XK_K: ksym = XK_Up;        break;
+		case XK_m:                      /* fallthrough */
 		case XK_M: ksym = XK_Return; ev->state &= ~ControlMask; break;
-
     case XK_x: ksym = XK_Delete;    break;
     case XK_X: ksym = XK_BackSpace; break;
 
@@ -467,11 +468,9 @@ keypress(XKeyEvent *ev)
 			XConvertSelection(dpy, (ev->state & ShiftMask) ? XA_PRIMARY : clip,
 			                  utf8, utf8, win, CurrentTime);
 			return;
-    case XK_h:
 		case XK_Left:
 			movewordedge(-1);
 			goto draw;
-    case XK_l:
 		case XK_Right:
 			movewordedge(+1);
 			goto draw;
